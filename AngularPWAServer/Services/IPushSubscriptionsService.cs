@@ -10,5 +10,7 @@ namespace AngularPWAServer.Services
         void Insert(PushSubscription subscription);
 
         void Delete(string endpoint);
+
+        void DeleteAll();
     }
 }

@@ -5,6 +5,7 @@ using AngularPWAServer.Services;
 using Lib.Net.Http.WebPush.Authentication;
 using Microsoft.Extensions.Options;
 using AngularPWAServer.Models;
+using System.Collections.Generic;
 
 namespace AngularPWAServer.Controllers
 {
@@ -32,10 +33,25 @@ namespace AngularPWAServer.Controllers
             _pushSubscriptionsService.Insert(subscription);
         }
 
-        [HttpDelete("{endpoint}")]
-        public void Delete(string endpoint)
+        [HttpPost("removeSubscription")]
+        public void Delete([FromBody]PushSubscription subscription)
         {
-            _pushSubscriptionsService.Delete(WebUtility.UrlDecode(endpoint));
+            _pushSubscriptionsService.Delete(WebUtility.UrlDecode(subscription.Endpoint));
+        }
+
+        [HttpDelete("deletall/{password}")]
+        public void DeleteAll(string password)
+        {
+            if (password == "justdelete")
+            {
+                _pushSubscriptionsService.DeleteAll();
+            }
+        }
+
+        [HttpGet]
+        public IEnumerable<PushSubscription> GetAll()
+        {
+            return _pushSubscriptionsService.GetAll();
         }
 
         [HttpPost("notify")]

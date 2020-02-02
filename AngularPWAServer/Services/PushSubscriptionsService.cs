@@ -45,6 +45,11 @@ namespace AngularPWAServer.Services
             _collection.Delete(subscription => subscription.Endpoint == endpoint);
         }
 
+        public void DeleteAll()
+        {
+            _collection.Delete((p) => true);
+        }
+
         public void Dispose()
         {
             _db.Dispose();

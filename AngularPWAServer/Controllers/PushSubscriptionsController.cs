@@ -6,6 +6,8 @@ using Lib.Net.Http.WebPush.Authentication;
 using Microsoft.Extensions.Options;
 using AngularPWAServer.Models;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AngularPWAServer.Controllers
 {
@@ -55,19 +57,30 @@ namespace AngularPWAServer.Controllers
         }
 
         [HttpPost("notify")]
-        public void NotifySubscribers([FromBody] PushNotification pushNotification)
+        public async Task NotifySubscribers([FromBody] PushNotification pushNotification)
         {
             PushMessage notification = new AngularPushNotification
             {
                 Title = pushNotification.Title,
                 Body = pushNotification.Message,
-                Icon = "assets/icons/icon-96x96.png"
+                Icon = "assets/icons/icon-96x96.png",
+                Vibrate = [100,50,100],
+                Actions
             }.ToPushMessage();
 
             foreach (PushSubscription subscription in _pushSubscriptionsService.GetAll())
             {
                 // Fire-and-forget 
-                _pushClient.RequestPushMessageDeliveryAsync(subscription, notification);
+                try
+                {
+                    await _pushClient.RequestPushMessageDeliveryAsync(subscription, notification);
+                }
+                catch (System.Exception)
+                {
+
+                    //nothing.
+                }
+               
             }
         }
     }

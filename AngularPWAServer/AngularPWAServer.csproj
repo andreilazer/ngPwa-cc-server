@@ -5,32 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="RecipePhotos\apple-pie.jpeg" />
-    <None Remove="RecipePhotos\banana-bread.jpg" />
-    <None Remove="RecipePhotos\cozonac.jpg" />
-    <None Remove="RecipePhotos\meat-with-cream.jpg" />
-    <None Remove="RecipePhotos\sarmale.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="RecipePhotos\apple-pie.jpeg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RecipePhotos\banana-bread.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RecipePhotos\cozonac.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RecipePhotos\meat-with-cream.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RecipePhotos\sarmale.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Lib.Net.Http.WebPush" Version="3.1.0" />
     <PackageReference Include="LiteDB" Version="4.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />

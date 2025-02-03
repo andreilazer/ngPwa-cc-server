@@ -25,7 +25,7 @@ namespace AngularPWAServer.Controllers
 
             _pushClient.DefaultAuthentication = new VapidAuthentication(options.Value.PublicKey, options.Value.PrivateKey)
             {
-                Subject = "https://cc-angularpwa.firebaseapp.com"
+                Subject = "https://test-pwa19.web.app/"
             };
         }
 
@@ -64,8 +64,7 @@ namespace AngularPWAServer.Controllers
                 Title = pushNotification.Title,
                 Body = pushNotification.Message,
                 Icon = "assets/icons/icon-96x96.png",
-                Vibrate = [100,50,100],
-                Actions
+                Vibrate = { 100, 50, 100 }
             }.ToPushMessage();
 
             foreach (PushSubscription subscription in _pushSubscriptionsService.GetAll())
@@ -75,7 +74,7 @@ namespace AngularPWAServer.Controllers
                 {
                     await _pushClient.RequestPushMessageDeliveryAsync(subscription, notification);
                 }
-                catch (System.Exception)
+                catch (System.Exception e)
                 {
 
                     //nothing.
